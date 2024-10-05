@@ -75,10 +75,6 @@ Visit `http://localhost:8000` in your browser to see the application.
 
 Contributions are welcome! Please create a pull request or open an issue to discuss improvements or features.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## Contact
 
-For any inquiries, feel free to reach out to me at [your_email@example.com].
+For any inquiries, feel free to reach out to me at [osamarefaat93@gmail.com].
