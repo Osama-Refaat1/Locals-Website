@@ -75,6 +75,6 @@ Visit `http://localhost:8000` in your browser to see the application.
 
 Contributions are welcome! Please create a pull request or open an issue to discuss improvements or features.
 
-## Contact
+### Author
+[Osama Refaat](https://www.linkedin.com/in/osama-refaat1) - LinkedIn
 
-For any inquiries, feel free to reach out to me at [osamarefaat93@gmail.com].
