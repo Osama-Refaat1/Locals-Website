@@ -8,7 +8,7 @@ use App\Http\Controllers\AdminController;
 route::get('/', [HomeController::class, 'home'] );
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('home.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -41,4 +41,12 @@ route::get('add_product',[AdminController::class,'add_product'])->
 middleware(['auth' , 'admin']);
 
 route::post('upload_product',[AdminController::class,'upload_product'])->
+middleware(['auth' , 'admin']);
+
+
+route::get('view_product',[AdminController::class,'view_product'])->
+middleware(['auth' , 'admin']);
+
+
+route::get('generate_description',[AdminController::class,'generateDescription'])->
 middleware(['auth' , 'admin']);

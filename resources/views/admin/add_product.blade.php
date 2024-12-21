@@ -62,13 +62,17 @@
             @csrf
                 <div class="input_des">
                     <label for="">Product Title</label>
-                    <input type="text" name="title" required>
+                    <input type="text" id="title" name="title" required>
                 </div>
 
                 <div class="input_des">
                     <label for="">Description</label>
-                     <textarea name="description" required></textarea>
-                </div class="input_des"> 
+                     <textarea name="description" id="description" required></textarea>
+                </div class="input_des">
+                
+                <div class="input_des">
+                    <button type="button" class="btn btn-primary" id="generate-description">Generate Description</button>
+                </div>
 
                 <div class="input_des">
                     <label for="">Product Price</label>
@@ -86,7 +90,7 @@
                         <option value="">Select an option </option>
                         
                         @foreach ( $categories as $category )
-                        <option value="{{$category->category_name}}">{{$category->category_name}}</option>
+                        <option id="category" value="{{$category->category_name}}">{{$category->category_name}}</option>
                         @endforeach
 
                     </select>
@@ -117,5 +121,51 @@
     <script src="{{asset('/admincss/vendor/jquery-validation/jquery.validate.min.js')}}"></script>
     <script src="{{asset('/admincss/js/charts-home.js')}}"></script>
     <script src="{{asset('/admincss/js/front.js')}}"></script>
+
+<script>
+ document.getElementById('generate-description').addEventListener('click',  () => {
+    var title = document.getElementById('title').value;
+    var category = document.getElementById('category').value; // Ensure you are getting the category as well
+
+    if (title && category) {  // Make sure both title and category are provided
+       
+        fetch('/generate_description', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({
+                title: title,
+                category: category  // Include category in the request
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.description) {
+                // Update the description field with the generated text
+                document.getElementById('description').textContent = data.description;
+            } else {
+                console.error('No description received');
+                alert('Error: No description received from the server.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('There was an error generating the description. Please try again.');
+        });
+    } else {
+        alert('Please enter both title and category.');
+    }
+});
+
+
+
+</script>
   </body>
 </html>

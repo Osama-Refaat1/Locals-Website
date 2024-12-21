@@ -28,15 +28,35 @@
                         <a href="shop.html" class="nav-item nav-link">Shop</a>
                         <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
-                        <a href="cart.html" class="nav-item nav-link">My Cart</a>
-                        <a href="{{url('/login')}}" class="nav-item nav-link d-lg-none">Login</a> <!-- Mobile login button -->
-                        <a href="{{url('/register')}}" class="nav-item nav-link d-lg-none">Register</a> <!-- Mobile register button -->
+                        
+                       
+                       
+                        @if (Route::has('login'))
+                            @auth
+
+
+                            <a href="cart.html" class="nav-item nav-link">My Cart</a>
+                            <form style="padding:15px;" method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <input class="btn btn-success" type="submit" value="Logout">
+                            </form>
+
+                        @else
+
+
+                        <a href="{{url('/login')}}" class="rounded-pill nav-item nav-link d-lg-none">Login</a> <!-- Mobile login button -->
+                        <a href="{{url('/register')}}" class="rounded-pill nav-item nav-link d-lg-none">Register</a> <!-- Mobile register button -->
                     </div>
                 </div>
 
                 <!-- Desktop login button (visible only on large screens) -->
                 <a href="{{url('/login')}}" class="btn btn-primary d-none d-lg-block ml-auto">Login</a>
                 <a href="{{url('/register')}}" class="btn btn-primary d-none d-lg-block ml-2">Register</a>
+                        @endauth
+                        @endif
+                
+
             </nav>
         </div>
     </div>
