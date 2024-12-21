@@ -49,4 +49,4 @@ middleware(['auth' , 'admin']);
 
 
 route::get('generate_description',[AdminController::class,'generateDescription'])->
-middleware(['auth' , 'admin']);
+middleware();

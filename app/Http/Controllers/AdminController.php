@@ -111,7 +111,7 @@ class AdminController extends Controller
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),  // Correct way to get the API key
         ])->post('https://api.openai.com/v1/chat/completions', [
-            'model' => 'gpt-4o-mini',  // Use the correct model name (e.g., 'gpt-4')
+            'model' => 'gpt-3.5-turbo',  // Use the correct model name (e.g., 'gpt-4')
             'messages' => [
                 [
                     'role' => 'user',
@@ -119,6 +119,7 @@ class AdminController extends Controller
                 ],
             ],
         ]);
+            dd($response);
     
         // Check if the response is successful and contains the expected data
         if ($response->successful()) {
